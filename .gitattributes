@@ -1,0 +1,8 @@
+* text=auto
+*.cpp text eol=crlf
+*.h text eol=crlf
+*.vcxproj text eol=crlf
+*.props text eol=crlf
+*.md text eol=lf
+*.png binary
+*.jpg binary

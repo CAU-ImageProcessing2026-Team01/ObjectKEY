@@ -1,0 +1,16 @@
+.vs/
+bin/
+obj/
+x64/
+Debug/
+Release/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+config/Local.props
+data/*
+!data/README.md
+results/*
+!results/.gitkeep
+*.zip
