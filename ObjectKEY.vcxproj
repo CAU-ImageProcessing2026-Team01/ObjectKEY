@@ -1,14 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
@@ -22,23 +14,10 @@
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{b6a7bc00-4964-4402-8cb0-6c8bb64ea919}</ProjectGuid>
-    <RootNamespace>ImageProcessingTeam01OK</RootNamespace>
+    <RootNamespace>ObjectKEY</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -57,12 +36,6 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -70,40 +43,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -142,7 +81,7 @@
   <Import Project="config\Local.props" Condition="Exists('config\Local.props')" />
   <PropertyGroup>
     <OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
+    <IntDir>$(ProjectDir)obj\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>ObjectKEY</TargetName>
     <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
@@ -157,16 +96,6 @@
       <AdditionalDependencies>windowscodecs.lib;ole32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(UseOpenCV)'=='true'">
-    <ClCompile>
-      <AdditionalIncludeDirectories>$(OpenCVIncludeDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OBJECTKEY_USE_OPENCV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>$(OpenCVLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(OpenCVLibrary);%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\app\Application.cpp" />
     <ClInclude Include="src\app\Application.h" />
@@ -176,16 +105,71 @@
     <ClInclude Include="src\io\ImageLoader.h" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
+  <PropertyGroup>
+    <OnnxRuntimeDir Condition="'$(OnnxRuntimeDir)'==''">$(ProjectDir)deps\onnxruntime-win-x64-1.20.1</OnnxRuntimeDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(OnnxRuntimeDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(OnnxRuntimeDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>onnxruntime.lib;bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app\EmbeddingCommands.cpp" />
+    <ClCompile Include="src\app\MatchingConfig.cpp" />
+    <ClInclude Include="src\app\MatchingConfig.h" />
+    <ClInclude Include="src\features\MatchingThresholds.h" />
+    <None Include="config\matching.ini" />
+    <ClInclude Include="src\app\EmbeddingCommands.h" />
+    <ClCompile Include="src\features\Embedding.cpp" />
+    <ClCompile Include="src\features\Alignment.cpp" />
+    <ClInclude Include="src\features\Alignment.h" />
+    <ClCompile Include="src\features\ResNet18.cpp" />
+    <ClInclude Include="src\features\ResNet18.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\vision\ImageOps.cpp" />
+    <ClCompile Include="src\vision\Affine.cpp" />
+    <ClCompile Include="src\vision\Sift.cpp" />
+    <ClCompile Include="src\vision\MaxFlow.cpp" />
+    <ClCompile Include="src\vision\GrabCut.cpp" />
+    <ClInclude Include="src\vision\ImageOps.h" />
+    <ClInclude Include="src\vision\Affine.h" />
+    <ClInclude Include="src\vision\Sift.h" />
+    <ClInclude Include="src\vision\MaxFlow.h" />
+    <ClInclude Include="src\vision\GrabCut.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <Target Name="ValidateOpenCV" BeforeTargets="PrepareForBuild" Condition="'$(UseOpenCV)'=='true'">
-    <Error Condition="'$(Platform)'!='x64'" Text="Configured OpenCV backend requires x64." />
-    <Error Condition="!Exists('$(OpenCVIncludeDir)\opencv2\imgcodecs.hpp')" Text="Set OpenCVIncludeDir in config/Local.props." />
-    <Error Condition="!Exists('$(OpenCVLibDir)\$(OpenCVLibrary)') Or '$(OpenCVLibrary)'==''" Text="Set OpenCVLibDir and configuration-specific OpenCVLibrary." />
-    <Error Condition="!Exists('$(OpenCVBinDir)\$(OpenCVDll)') Or '$(OpenCVDll)'==''" Text="Set OpenCVBinDir and configuration-specific OpenCVDll." />
+  <Target Name="ValidateInferenceRuntime" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(Platform)'!='x64'" Text="ObjectKEY inference requires x64." />
+    <Error Condition="!Exists('$(OnnxRuntimeDir)\lib\onnxruntime.lib')" Text="Run setup.ps1 to install ONNX Runtime and export ResNet-18." />
   </Target>
-  <Target Name="CopyOpenCVRuntime" AfterTargets="Build" Condition="'$(UseOpenCV)'=='true'">
-    <Copy SourceFiles="$(OpenCVBinDir)\$(OpenCVDll)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+  <Target Name="CopyInferenceRuntime" AfterTargets="Build">
+    <Copy SourceFiles="$(OnnxRuntimeDir)\lib\onnxruntime.dll" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
   </Target>
+  <ItemGroup>
+    </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gui\DesktopApp.cpp" />
+    <ClCompile Include="src\gui\GrabCutEditor.cpp" />
+    <ClInclude Include="src\gui\GrabCutEditor.h" />
+    <ClInclude Include="src\gui\DesktopApp.h" />
+    <ClInclude Include="src\gui\RoiSelection.h" />
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>user32.lib;gdi32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\features\LightGlue.cpp" />
+    <ClInclude Include="src\features\LightGlue.h" />
+    <ClCompile Include="src\features\RecommendedPipeline.cpp" />
+    <ClInclude Include="src\features\RecommendedPipeline.h" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <ItemGroup>
+    <Filter Include="src" />
+    <Filter Include="src\app" />
+    <Filter Include="src\core" />
+    <Filter Include="src\io" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app\Application.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClInclude Include="src\app\Application.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Interfaces.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Types.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClCompile Include="src\io\ImageLoader.cpp">
+      <Filter>src\io</Filter>
+    </ClCompile>
+    <ClInclude Include="src\io\ImageLoader.h">
+      <Filter>src\io</Filter>
+    </ClInclude>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src\features" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app\EmbeddingCommands.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClInclude Include="src\app\EmbeddingCommands.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+    <ClCompile Include="src\features\Embedding.cpp">
+      <Filter>src\features</Filter>
+    </ClCompile>
+    <ClCompile Include="src\features\ResNet18.cpp">
+      <Filter>src\features</Filter>
+    </ClCompile>
+    <ClInclude Include="src\features\ResNet18.h">
+      <Filter>src\features</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    </ItemGroup>
+  <ItemGroup>
+    </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gui\DesktopApp.cpp">
+      <Filter>src\gui</Filter>
+    </ClCompile>
+    <ClInclude Include="src\gui\DesktopApp.h">
+      <Filter>src\gui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src\gui" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\features\Alignment.cpp">
+      <Filter>src\features</Filter>
+    </ClCompile>
+    <ClInclude Include="src\features\Alignment.h">
+      <Filter>src\features</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gui\GrabCutEditor.cpp">
+      <Filter>src\gui</Filter>
+    </ClCompile>
+    <ClInclude Include="src\gui\GrabCutEditor.h">
+      <Filter>src\gui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\features\LightGlue.cpp">
+      <Filter>src\features</Filter>
+    </ClCompile>
+    <ClInclude Include="src\features\LightGlue.h">
+      <Filter>src\features</Filter>
+    </ClInclude>
+    <ClCompile Include="src\features\RecommendedPipeline.cpp">
+      <Filter>src\features</Filter>
+    </ClCompile>
+    <ClInclude Include="src\features\RecommendedPipeline.h">
+      <Filter>src\features</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\app\MatchingConfig.cpp">
+      <Filter>src\app</Filter>
+    </ClCompile>
+    <ClInclude Include="src\app\MatchingConfig.h">
+      <Filter>src\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\features\MatchingThresholds.h">
+      <Filter>src\features</Filter>
+    </ClInclude>
+    <None Include="config\matching.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\gui\RoiSelection.h">
+      <Filter>src\gui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src\vision" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\vision\Affine.cpp">
+      <Filter>src\vision</Filter>
+    </ClCompile>
+    <ClInclude Include="src\vision\Affine.h">
+      <Filter>src\vision</Filter>
+    </ClInclude>
+    <ClCompile Include="src\vision\GrabCut.cpp">
+      <Filter>src\vision</Filter>
+    </ClCompile>
+    <ClInclude Include="src\vision\GrabCut.h">
+      <Filter>src\vision</Filter>
+    </ClInclude>
+    <ClCompile Include="src\vision\ImageOps.cpp">
+      <Filter>src\vision</Filter>
+    </ClCompile>
+    <ClInclude Include="src\vision\ImageOps.h">
+      <Filter>src\vision</Filter>
+    </ClInclude>
+    <ClCompile Include="src\vision\MaxFlow.cpp">
+      <Filter>src\vision</Filter>
+    </ClCompile>
+    <ClInclude Include="src\vision\MaxFlow.h">
+      <Filter>src\vision</Filter>
+    </ClInclude>
+    <ClCompile Include="src\vision\Sift.cpp">
+      <Filter>src\vision</Filter>
+    </ClCompile>
+    <ClInclude Include="src\vision\Sift.h">
+      <Filter>src\vision</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

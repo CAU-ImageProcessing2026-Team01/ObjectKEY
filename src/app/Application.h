@@ -8,9 +8,8 @@ public:
     int run(int argc, wchar_t* argv[]) const;
 private:
     const IImageSource& images_;
-    int enroll(const std::filesystem::path&) const;
-    int verify(const std::filesystem::path&) const;
-    int evaluate(const std::filesystem::path&) const;
+
+
     bool inspect(const std::filesystem::path&) const;
 };
 }

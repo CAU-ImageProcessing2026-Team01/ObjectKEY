@@ -1,7 +1,6 @@
 <Solution>
   <Configurations>
     <Platform Name="x64" />
-    <Platform Name="x86" />
   </Configurations>
-  <Project Path="ImageProcessing_Team01_OK.vcxproj" />
+  <Project Path="ObjectKEY.vcxproj" Id="b6a7bc00-4964-4402-8cb0-6c8bb64ea919" />
 </Solution>

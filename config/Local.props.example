@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Copy to Local.props, then adjust to your installed OpenCV build. -->
+  <!-- Optional: copy to Local.props only to use SDKs outside this repository. -->
   <PropertyGroup>
-    <UseOpenCV>true</UseOpenCV>
-    <OpenCVIncludeDir>C:\opencv\build\include</OpenCVIncludeDir>
-    <OpenCVLibDir>C:\opencv\build\x64\vc16\lib</OpenCVLibDir>
-    <OpenCVBinDir>C:\opencv\build\x64\vc16\bin</OpenCVBinDir>
-    <!-- Example only: replace 4100 with the suffix in your actual filenames. -->
-    <OpenCVLibrary Condition="'$(Configuration)'=='Debug'">opencv_world4100d.lib</OpenCVLibrary>
-    <OpenCVLibrary Condition="'$(Configuration)'!='Debug'">opencv_world4100.lib</OpenCVLibrary>
-    <OpenCVDll Condition="'$(Configuration)'=='Debug'">opencv_world4100d.dll</OpenCVDll>
-    <OpenCVDll Condition="'$(Configuration)'!='Debug'">opencv_world4100.dll</OpenCVDll>
+    <OnnxRuntimeDir>C:\SDKs\onnxruntime-win-x64-1.20.1</OnnxRuntimeDir>
   </PropertyGroup>
 </Project>

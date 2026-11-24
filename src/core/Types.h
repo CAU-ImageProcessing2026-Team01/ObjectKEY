@@ -1,5 +1,4 @@
 #pragma once
-#include <array>
 #include <cstdint>
 #include <filesystem>
 #include <optional>
@@ -7,9 +6,9 @@
 #include <vector>
 
 namespace objectkey {
-enum class Status { Ok, InvalidInput, IoError, NotImplemented };
+enum class Status { Ok, InvalidInput, IoError };
 struct Outcome {
-    Status status = Status::NotImplemented;
+    Status status = Status::InvalidInput;
     std::string message;
     [[nodiscard]] bool ok() const { return status == Status::Ok; }
 };
@@ -30,41 +29,5 @@ struct FeatureSet {
     std::uint32_t descriptorDimension = 0;
     std::vector<Keypoint> keypoints;
     std::vector<float> descriptors; // keypoint-major, count * dimension
-};
-struct PipelineConfig {
-    std::string version = "1";
-    std::string preprocessingId = "not-implemented";
-    std::string extractorId = "not-implemented";
-    // Unset until validation has selected thresholds; never silently approve.
-    std::optional<double> appearanceThreshold, viewpointThreshold;
-};
-struct ObjectTemplate {
-    std::uint32_t schemaVersion = 1;
-    std::string objectId;
-    Roi referenceRoi;
-    PipelineConfig config;
-    FeatureSet features;
-};
-struct Match { std::size_t referenceIndex = 0, queryIndex = 0; double distance = 0; };
-struct MatchResult { std::vector<Match> matches; };
-struct GeometryResult {
-    bool valid = false;
-    std::array<double, 9> homography{};
-    std::vector<std::size_t> inlierMatchIndices;
-    std::optional<double> reprojectionError, viewpointDeviation;
-};
-enum class AuthDecision { NotEvaluated, Reject, Accept };
-struct AuthResult {
-    AuthDecision decision = AuthDecision::NotEvaluated;
-    std::optional<double> appearanceScore, viewpointDeviation;
-    std::string reason = "Authentication is not implemented.";
-};
-struct EvaluationSample {
-    std::filesystem::path imagePath;
-    bool expectedAccept = false;
-};
-struct EvaluationReport {
-    std::size_t sampleCount = 0;
-    std::vector<AuthResult> results;
 };
 }

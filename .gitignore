@@ -1,16 +1,31 @@
-.vs/
-bin/
-obj/
-x64/
-Debug/
-Release/
+# Local build output and Visual Studio state
+/.vs/
+/bin/
+/obj/
+/x64/
+/Debug/
+/Release/
 *.user
 *.suo
 *.VC.db
 *.VC.opendb
-config/Local.props
-data/*
-!data/README.md
-results/*
-!results/.gitkeep
+/config/Local.props
+
+# Downloaded SDKs, exporter source/cache, generated models, and Python environment
+/deps/
+/models/
+/.venv/
+__pycache__/
+*.pyc
 *.zip
+*.okt
+
+# Local datasets, experiments, analysis, reports, and historical source snapshots
+/data/*
+!/data/README.md
+/research/
+/results/
+
+# Local development scripts and tests; portable setup lives in setup.ps1 and config/setup/
+/scripts/
+/tests/
