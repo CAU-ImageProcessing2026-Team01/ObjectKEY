@@ -67,7 +67,7 @@ int runEmbeddingCommand(int argc,wchar_t* argv[],const IImageSource& images) {
     }
     if(command==L"enroll"&&std::filesystem::exists(std::filesystem::path(required(options,L"--out"))))
         throw std::runtime_error("Template already exists; choose a new output path.");
-    const auto model=options.contains(L"--model")?std::filesystem::path(options.at(L"--model")):std::filesystem::path(L"models/resnet18_embedding.onnx");
+    const auto model=options.contains(L"--model")?std::filesystem::path(options.at(L"--model")):locateDefaultEmbeddingModel();
     const auto matcher=options.contains(L"--matcher-dir")?std::filesystem::path(options.at(L"--matcher-dir")):std::filesystem::path{};
     settings.appearance=threshold;
     RecommendedPipeline pipeline(model,matcher,settings);
