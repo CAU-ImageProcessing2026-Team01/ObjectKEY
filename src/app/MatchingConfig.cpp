@@ -3,6 +3,7 @@
 #include <charconv>
 #include <fstream>
 #include <map>
+#include <stdexcept>
 #include <string>
 #include <system_error>
 namespace objectkey {
@@ -12,16 +13,19 @@ std::string trim(const std::string& value) {
     if(first==std::string::npos)return {};
     return value.substr(first,value.find_last_not_of(" \t\r\n")-first+1);
 }
-std::filesystem::path locate() {
+std::filesystem::path executableDirectory() {
     wchar_t buffer[32768]{};const auto size=GetModuleFileNameW(nullptr,buffer,32768);
-    if(!size||size>=32768)throw std::runtime_error("Cannot locate the executable for matching settings.");
-    auto directory=std::filesystem::path(buffer).parent_path();
+    if(!size||size>=32768)throw std::runtime_error("Cannot locate the executable for matching assets.");
+    return std::filesystem::path(buffer).parent_path();
+}
+std::filesystem::path locate(const std::filesystem::path& relativePath) {
+    auto directory=executableDirectory();
     while(!directory.empty()) {
-        auto candidate=directory/L"config/matching.ini";
-        if(std::filesystem::exists(candidate))return candidate;
+        auto candidate=directory/relativePath;
+        if(std::filesystem::is_regular_file(candidate))return candidate;
         auto parent=directory.parent_path();if(parent==directory)break;directory=parent;
     }
-    throw std::runtime_error("Cannot find config/matching.ini beside the executable or in its ancestors. Restore the file or specify --config PATH.");
+    return {};
 }
 template<class T> T number(const std::map<std::string,std::string>& values,const char* key) {
     auto found=values.find(key);
@@ -33,8 +37,15 @@ template<class T> T number(const std::map<std::string,std::string>& values,const
     return result;
 }
 }
+std::filesystem::path locateDefaultEmbeddingModel() {
+    auto path=locate(L"models/resnet18_embedding.onnx");
+    if(path.empty())throw std::runtime_error("Cannot find models/resnet18_embedding.onnx. Run setup.ps1.");
+    return path;
+}
 MatchingConfig loadMatchingConfig(const std::filesystem::path& explicitPath) {
-    MatchingConfig config;config.path=std::filesystem::absolute(explicitPath.empty()?locate():explicitPath).lexically_normal();
+    const auto path=explicitPath.empty()?locate(L"config/matching.ini"):explicitPath;
+    if(path.empty())throw std::runtime_error("Cannot find config/matching.ini beside the executable or in its ancestors. Restore the file or specify --config PATH.");
+    MatchingConfig config;config.path=std::filesystem::absolute(path).lexically_normal();
     if(!std::filesystem::is_regular_file(config.path))throw std::runtime_error("Matching configuration is not a regular file.");
     if(std::filesystem::file_size(config.path)>16384)throw std::runtime_error("Matching configuration exceeds 16 KiB.");
     std::ifstream in(config.path,std::ios::binary);

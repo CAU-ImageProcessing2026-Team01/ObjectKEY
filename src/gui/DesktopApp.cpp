@@ -56,16 +56,6 @@ std::wstring widen(const std::string& value) {
     int count=MultiByteToWideChar(CP_UTF8,0,value.data(),int(value.size()),nullptr,0);
     std::wstring text(count,L' ');MultiByteToWideChar(CP_UTF8,0,value.data(),int(value.size()),text.data(),count);return text;
 }
-std::filesystem::path locateModel() {
-    wchar_t buffer[32768]{};GetModuleFileNameW(nullptr,buffer,32768);
-    auto directory=std::filesystem::path(buffer).parent_path();
-    for(int i=0;i<6&&!directory.empty();i++) {
-        auto path=directory/L"models/resnet18_embedding.onnx";
-        if(std::filesystem::is_regular_file(path))return path;
-        directory=directory.parent_path();
-    }
-    throw std::runtime_error("Cannot find models/resnet18_embedding.onnx. Run setup.ps1.");
-}
 std::optional<std::filesystem::path> choose(HWND owner,bool save,const wchar_t* title,const wchar_t* pattern) {
     using Microsoft::WRL::ComPtr;
     ComPtr<IFileDialog> dialog;
@@ -326,7 +316,7 @@ LRESULT CALLBACK procedure(HWND window,UINT message,WPARAM wp,LPARAM lp) {
 int runGui() {
     const HRESULT com=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);if(FAILED(com))throw std::runtime_error("Cannot initialize desktop UI.");
     struct Cleanup {~Cleanup(){CoUninitialize();}} cleanup;
-    State state;state.model=locateModel();state.config=loadMatchingConfig();
+    State state;state.model=locateDefaultEmbeddingModel();state.config=loadMatchingConfig();
     WNDCLASSW cls{};cls.lpfnWndProc=procedure;cls.hInstance=GetModuleHandleW(nullptr);cls.lpszClassName=L"ObjectKEYDesktop";
     cls.hCursor=LoadCursorW(nullptr,IDC_ARROW);cls.hbrBackground=reinterpret_cast<HBRUSH>(COLOR_WINDOW+1);RegisterClassW(&cls);
     RECT size{0,0,960,810};const DWORD style=WS_OVERLAPPED|WS_CAPTION|WS_SYSMENU|WS_MINIMIZEBOX;AdjustWindowRect(&size,style,FALSE);
