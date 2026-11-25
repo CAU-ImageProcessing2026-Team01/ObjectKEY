@@ -8,19 +8,19 @@ ResNet-18 summarizes object appearance as a global feature vector. ObjectKEY use
 
 A residual block combines a learned transformation with a shortcut:
 
-$$
-y=\operatorname{ReLU}\bigl(F(x)+P(x)\bigr).
-$$
+```math
+y=\mathrm{ReLU}\bigl(F(x)+P(x)\bigr).
+```
 
-Here, $P$ is an identity mapping or a projection when feature dimensions change. Stacked residual blocks extract increasingly abstract visual features. Global average pooling produces the 512-dimensional vector used by ObjectKEY.
+Here, $`P`$ is an identity mapping or a projection when feature dimensions change. Stacked residual blocks extract increasingly abstract visual features. Global average pooling produces the 512-dimensional vector used by ObjectKEY.
 
 ## Image normalization
 
-[Preprocessing](preprocessing.md) provides a foreground-aligned $224\times224$ image with a neutral background. Pixel values are converted from BGR to RGB and scaled to the unit interval. Each channel uses the pretrained model's mean $\mu_c$ and standard deviation $\sigma_c$:
+[Preprocessing](preprocessing.md) provides a foreground-aligned $`224\times224`$ image with a neutral background. Pixel values are converted from BGR to RGB and scaled to the unit interval. Each channel uses the pretrained model's mean $`\mu_c`$ and standard deviation $`\sigma_c`$:
 
-$$
+```math
 X_c(x,y)=\frac{I_c(x,y)-\mu_c}{\sigma_c}.
-$$
+```
 
 The tensor is arranged in channel-first order and evaluated through ONNX Runtime.
 
@@ -28,18 +28,18 @@ The tensor is arranged in channel-first order and evaluated through ONNX Runtime
 
 Define unit-length normalization as
 
-$$
-\operatorname{norm}(v)=\frac{v}{\lVert v\rVert_2}.
-$$
+```math
+\mathrm{norm}(v)=\frac{v}{\lVert v\rVert_2}.
+```
 
-The mask's principal axis can point in either direction. ObjectKEY extracts features from the aligned image $I$ and its half-turn rotation $R_\pi I$, then pools them:
+The mask's principal axis can point in either direction. ObjectKEY extracts features from the aligned image $`I`$ and its half-turn rotation $`R_\pi I`$, then pools them:
 
-$$
-e=\operatorname{norm}\left(
-\operatorname{norm}(f(I))+
-\operatorname{norm}(f(R_\pi I))
+```math
+e=\mathrm{norm}\left(
+\mathrm{norm}(f(I))+
+\mathrm{norm}(f(R_\pi I))
 \right).
-$$
+```
 
 The resulting embedding is compared with the reference embedding using [cosine similarity](cosine-similarity.md).
 

@@ -22,13 +22,13 @@ C++ runs the exported layer graphs sequentially. It stops when the confident-fea
 
 ## Correspondence selection
 
-Let $S_{ij}$ be the predicted log assignment score. A pair is retained when it is the mutual best assignment and exceeds a match-score threshold:
+Let $`S_{ij}`$ be the predicted log assignment score. A pair is retained when it is the mutual best assignment and exceeds a match-score threshold:
 
-$$
-j=\operatorname*{arg\,max}_{k}S_{ik},\qquad
-i=\operatorname*{arg\,max}_{k}S_{kj},\qquad
+```math
+j=\mathop{\mathrm{arg\,max}}\limits_{k}S_{ik},\qquad
+i=\mathop{\mathrm{arg\,max}}\limits_{k}S_{kj},\qquad
 \exp(S_{ij})>\tau_{\mathrm{match}}.
-$$
+```
 
 The implementation maps retained indexes back to the original feature arrays. These one-to-one correspondences are then passed to [affine RANSAC](ransac.md).
 

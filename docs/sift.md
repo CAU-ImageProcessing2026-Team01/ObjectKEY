@@ -6,17 +6,17 @@ SIFT describes the gradient pattern around a localized [DoG keypoint](dog-keypoi
 
 ## Orientation assignment
 
-For Gaussian-smoothed image $L$, central differences give the gradient:
+For Gaussian-smoothed image $`L`$, central differences give the gradient:
 
-$$
+```math
 g_x=L(x+1,y)-L(x-1,y),\qquad
 g_y=L(x,y+1)-L(x,y-1),
-$$
+```
 
-$$
+```math
 m=\sqrt{g_x^2+g_y^2},\qquad
-\phi=\operatorname{atan2}(g_y,g_x).
-$$
+\phi=\mathrm{atan2}(g_y,g_x).
+```
 
 Gradient magnitudes accumulate into an orientation histogram with Gaussian spatial weighting. The implementation smooths the circular histogram and interpolates its peaks. Strong secondary peaks above a relative peak threshold create additional orientations.
 
@@ -24,19 +24,19 @@ Gradient magnitudes accumulate into an orientation histogram with Gaussian spati
 
 Sampling coordinates are rotated into the keypoint's orientation and scaled by its detected scale. The neighborhood is divided into spatial cells, each containing a gradient-direction histogram:
 
-$$
+```math
 4\times4\times8=128.
-$$
+```
 
 A Gaussian window emphasizes nearby samples. Trilinear interpolation distributes each contribution across neighboring spatial cells and orientation bins.
 
-For raw histogram $h$, normalization and clipping are
+For raw histogram $`h`$, normalization and clipping are
 
-$$
+```math
 d_1=\frac{h}{\lVert h\rVert_2},\qquad
 \widetilde{d}_i=\min(d_{1,i},\tau_{\mathrm{clip}}),\qquad
 d_2=\frac{\widetilde{d}}{\lVert\widetilde{d}\rVert_2}.
-$$
+```
 
 Clipping reduces the influence of unusually large gradients.
 

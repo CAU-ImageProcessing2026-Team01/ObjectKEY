@@ -43,13 +43,13 @@ Cosine similarity compares global appearance. LightGlue finds local corresponden
 | Affine model and Householder QR least squares | [Affine fitting](docs/affine-transform.md) |
 | Robust estimation, inliers and model refinement | [RANSAC](docs/ransac.md) |
 
-The final decision combines appearance similarity $s$, inlier count $n$ and inlier ratio $r$:
+The final decision combines appearance similarity $`s`$, inlier count $`n`$ and inlier ratio $`r`$:
 
-$$
+```math
 \mathrm{Accept}=(s\ge\tau_s)\land(n\ge\tau_n)\land(r\ge\tau_r).
-$$
+```
 
-Each $\tau$ is the corresponding configurable threshold. [config/matching.ini](config/matching.ini) also defines the residual tolerance used to classify RANSAC inliers.
+Each $`\tau`$ is the corresponding configurable threshold. [config/matching.ini](config/matching.ini) also defines the residual tolerance used to classify RANSAC inliers.
 
 ## Run and datasets
 

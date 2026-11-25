@@ -6,41 +6,41 @@
 
 ## Principle
 
-For a partition $(S,T)$ with source $s\in S$ and sink $t\in T$, the cut capacity is
+For a partition $`(S,T)`$ with source $`s\in S`$ and sink $`t\in T`$, the cut capacity is
 
-$$
+```math
 C(S,T)=\sum_{u\in S,\ v\in T}c(u,v).
-$$
+```
 
 The maximum-flow/minimum-cut theorem states
 
-$$
+```math
 \max_f \lvert f\rvert=\min_{(S,T)}C(S,T).
-$$
+```
 
 A residual graph records how much additional flow each edge can carry. Every forward edge has a paired reverse edge so earlier flow can be redirected.
 
 ## FIFO push-relabel implementation
 
-Each vertex has excess flow $e(u)$ and height $h(u)$. Initialization raises the source height to the vertex count and saturates its outgoing edges. Nonterminal vertices with positive excess enter a FIFO queue.
+Each vertex has excess flow $`e(u)`$ and height $`h(u)`$. Initialization raises the source height to the vertex count and saturates its outgoing edges. Nonterminal vertices with positive excess enter a FIFO queue.
 
-An edge is admissible when its residual capacity $c_f(u,v)$ is positive and
+An edge is admissible when its residual capacity $`c_f(u,v)`$ is positive and
 
-$$
+```math
 h(u)=h(v)+1.
-$$
+```
 
 A push sends
 
-$$
+```math
 \Delta=\min\{e(u),c_f(u,v)\}
-$$
+```
 
 and updates both vertices' excess and the paired residual capacities. If no edge is admissible, relabel the vertex:
 
-$$
+```math
 h(u)\leftarrow 1+\min_{v:\,c_f(u,v)>0}h(v).
-$$
+```
 
 The implementation stores adjacency lists in flat arrays and periodically refreshes heights with reverse breadth-first searches. Sink-unreachable vertices receive distances back to the source so their excess can be returned. Processing ends when no active nonterminal vertex remains.
 

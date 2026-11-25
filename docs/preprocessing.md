@@ -14,17 +14,17 @@ The implementation resizes the image for segmentation, maps the ROI into that ca
 
 Foreground pixels determine the centroid and central moments:
 
-$$
+```math
 \bar{x}=\frac{\sum_{x,y}xM(x,y)}{\sum_{x,y}M(x,y)},\qquad
 \bar{y}=\frac{\sum_{x,y}yM(x,y)}{\sum_{x,y}M(x,y)}
-$$
+```
 
-$$
+```math
 \mu_{pq}=\sum_{x,y}M(x,y)(x-\bar{x})^p(y-\bar{y})^q,\qquad
-\theta=\frac{1}{2}\operatorname{atan2}(2\mu_{11},\mu_{20}-\mu_{02})
-$$
+\theta=\frac{1}{2}\mathrm{atan2}(2\mu_{11},\mu_{20}-\mu_{02})
+```
 
-Here, $M$ is the binary mask. The principal-axis angle $\theta$ provides a common orientation for the object. The implementation aligns that axis vertically, fits the foreground into the ResNet input canvas, and replaces the background with a neutral color. Inverse affine mapping and bilinear sampling construct the aligned image.
+Here, $`M`$ is the binary mask. The principal-axis angle $`\theta`$ provides a common orientation for the object. The implementation aligns that axis vertically, fits the foreground into the ResNet input canvas, and replaces the background with a neutral color. Inverse affine mapping and bilinear sampling construct the aligned image.
 
 A principal axis has two possible directions. [ResNet feature pooling](resnet18.md) combines the aligned image and its half-turn rotation to handle this ambiguity.
 
